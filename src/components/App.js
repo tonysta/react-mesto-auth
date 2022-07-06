@@ -14,6 +14,7 @@ import {Route, Routes} from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
+import InfoTooltip from "./InfoTooltip";
 
 
 function App() {
@@ -123,6 +124,7 @@ function App() {
             <PopupWithForm title='Вы уверены?' name='delete' />
             <EditAvatarPopup isOpen={isEditAvatarOpen} onOpen={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
             <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
+            <InfoTooltip onClose={closeAllPopups}></InfoTooltip>
 
             <Footer />
           </div>
