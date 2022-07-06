@@ -2,8 +2,9 @@ import React from "react";
 
 function Login () {
     return (
-        <form name="login">
-            <h1>Вход</h1>
+        <div className="popup__container">
+        <form className="popup__form" name="login">
+            <h1 className="popup__title">Вход</h1>
             <input
             type="email"
             placeholder="Email"
@@ -20,6 +21,7 @@ function Login () {
             />
             <button type="submit">Войти</button>
         </form>
+        </div>
     )
 }
 

@@ -5,7 +5,7 @@ import err from "../images/err.svg";
 function InfoTooltip ({onClose}) {
 
     return (
-        <div className="popup popup_type_active">
+        <div className="popup">
             <div className="popup__container">
                 <button
                     type="button"
