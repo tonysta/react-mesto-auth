@@ -34,9 +34,9 @@ function Register ({isOpen, onClose, open}) {
     }
 
     return (
-        <div className="popup__container">
-        <form onSubmit={handleSubmit} className="popup__form" name="register">
-            <h1>Регистрация</h1>
+        <div className="auth">
+        <form onSubmit={handleSubmit} className="auth__form" name="register">
+            <h1 className="auth__title">Регистрация</h1>
             <input
                 type="email"
                 placeholder="Email"
@@ -44,6 +44,7 @@ function Register ({isOpen, onClose, open}) {
                 name="email"
                 value={email || ''}
                 onChange={handleEmailChange}
+                className="auth__input"
             />
             <input
                 type="text"
@@ -54,9 +55,10 @@ function Register ({isOpen, onClose, open}) {
                 maxLength="20"
                 value={password || ''}
                 onChange={handlePasswordChange}
+                className="auth__input"
             />
-            <button type="submit">Зарегистрироваться</button>
-            <p>Уже зарегистрированы? <Link to="/sign-in">Войти</Link></p>
+            <button className="auth__submit" type="submit">Зарегистрироваться</button>
+            <p className="auth__text">Уже зарегистрированы? <Link to="/sign-in" className="auth__link">Войти</Link></p>
 
         </form>
             <InfoTooltip isOpen={isOpen} onClose={onClose} success={success}/>

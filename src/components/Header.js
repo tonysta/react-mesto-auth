@@ -6,9 +6,9 @@ function Header() {
     return (
         <header className="header">
             <img src={logo} alt="логотип" className="header__logo"/>
-            <div style={{display: "flex"}}>
-            <p style={{margin: 0, color: "red"}}>test@test.test</p>
-            <Link to="/sign-up" style={{marginLeft: "24px"}}>Регистрация</Link>
+            <div style={{display: "flex", alignItems:"center", paddingBottom: "13px"}}>
+                <p style={{margin: 0, color: "red"}}>test@test.test</p>
+                <Link to="/sign-up" className="auth__link" style={{marginLeft: "24px"}}>Регистрация/Войти/Выйти</Link>
             </div>
         </header>
     )

@@ -50,9 +50,26 @@
 @import url(./blocks/popup/__image/popup__image.css);
 @import url(./blocks/popup/__text/popup__text.css);
 
-
-
 @import url(./blocks/viewer/__container/viewer__container.css);
 @import url(./blocks/viewer/__img/viewer__img.css);
 @import url(./blocks/viewer/__title/viewer__title.css);
 @import url(./blocks/viewer/viewer.css);
+
+@import url(./blocks/auth/auth.css);
+@import url(./blocks/auth/__form/auth__form.css);
+@import url(./blocks/auth/__title/auth__title.css);
+@import url(./blocks/auth/__input/auth__input.css);
+@import url(./blocks/auth/__submit/auth__submit.css);
+@import url(./blocks/auth/__text/auth__text.css);
+@import url(./blocks/auth/__link/auth__link.css);
+
+
+
+
+
+
+
+
+
+
+
