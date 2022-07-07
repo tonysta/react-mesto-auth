@@ -14,14 +14,13 @@ import {Route, Routes} from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
-import InfoTooltip from "./InfoTooltip";
-
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isEditAvatarOpen, setIsEditAvatarOpen] = React.useState(false);
   const [isEditProfileOpen, setIsEditProfileOpen] = React.useState(false);
   const [isAddPlaceOpen, setIsAddPlaceOpen] = React.useState(false);
+  const [infoTooltipOpen, setInfoTooltipOpen] = React.useState(false)
   const [selectedCard, setSelectedCard] = useState(null);
   const [cards, setCards] = useState([]);
 
@@ -34,6 +33,10 @@ function App() {
 
   function handleCardClick(card) {
     setSelectedCard(card);
+  }
+
+  function openInfoTooltip() {
+    setInfoTooltipOpen(true);
   }
 
   function handleEditAvatarClick() {
@@ -50,6 +53,7 @@ function App() {
     setIsEditAvatarOpen(false);
     setIsEditProfileOpen(false);
     setIsAddPlaceOpen(false);
+    setInfoTooltipOpen(false);
     setSelectedCard(null);
   }
 
@@ -114,7 +118,7 @@ function App() {
                   </ProtectedRoute>
               }/>
 
-              <Route path="sign-up" element={<Register />} />
+              <Route path="sign-up" element={<Register isOpen={infoTooltipOpen} onClose={closeAllPopups} open={openInfoTooltip}/>} />
               <Route path="sign-in" element={<Login />}/>
 
             </Routes>
@@ -124,7 +128,7 @@ function App() {
             <PopupWithForm title='Вы уверены?' name='delete' />
             <EditAvatarPopup isOpen={isEditAvatarOpen} onOpen={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
             <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
-            <InfoTooltip onClose={closeAllPopups}></InfoTooltip>
+
 
             <Footer />
           </div>
