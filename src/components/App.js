@@ -57,15 +57,12 @@ function App() {
   function handleLogin() {
     setLoggedIn(true)
   }
-
   function handleCardClick(card) {
     setSelectedCard(card);
   }
-
   function openInfoTooltip() {
     setInfoTooltipOpen(true);
   }
-
   function handleEditAvatarClick() {
     setIsEditAvatarOpen(true);
   }
@@ -87,15 +84,15 @@ function App() {
   function handleUpdateUser(data) {
     api.patchProfile(data).then((res) => {
       setCurrentUser(res);
+      closeAllPopups();
     }).catch((err) => {console.log(err)});
-    closeAllPopups();
   }
 
   function handleUpdateAvatar(data) {
     api.editAvatar(data).then((res) => {
       setCurrentUser(res);
+      closeAllPopups();
     }).catch((err) => {console.log(err)});
-    closeAllPopups();
   }
 
   useEffect(function() {
@@ -123,8 +120,8 @@ function App() {
   function handleAddPlaceSubmit(card) {
     api.addCard(card).then((newCard) => {
       setCards([newCard, ...cards]);
+      closeAllPopups();
     }).catch((err) => {console.log(err)});
-    closeAllPopups();
   }
 
   return (

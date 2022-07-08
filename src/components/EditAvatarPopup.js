@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import PopupWithForm from "./PopupWithForm";
 
 function EditAvatarPopup({isOpen, onOpen, onUpdateAvatar}) {
 
-    const linkRef = React.createRef();
+    const linkRef = useRef();
 
     function handleSubmit(e) {
         e.preventDefault();
