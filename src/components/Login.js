@@ -23,7 +23,6 @@ function Login ({handleLogin}) {
             .then(res => res.json())
             .then((data) => {
                 if(data.token) {
-                    debugger
                     localStorage.setItem('token', data.token);
                     setEmail('');
                     setPassword('');

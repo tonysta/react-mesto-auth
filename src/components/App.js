@@ -26,6 +26,7 @@ function App() {
   const [cards, setCards] = useState([]);
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userData, setUserData] = useState(null);
   let navigate = useNavigate();
 
 
@@ -43,9 +44,13 @@ function App() {
     const token = localStorage.getItem('token');
     if (token){
       getContent(token).then((res) => {
+          const userData = {
+            email: res.data.email
+          };
+          setUserData(userData);
           setLoggedIn(true);
           navigate("/");
-        })
+        }).catch((err) => {console.log(err)});
       }
     }
 
@@ -126,7 +131,7 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <div className="background">
           <div className="page">
-            <Header />
+            <Header userData={userData} />
             <Routes>
               <Route path="/" element={
                   <ProtectedRoute loggedIn={loggedIn}>
