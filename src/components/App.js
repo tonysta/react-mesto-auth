@@ -14,7 +14,7 @@ import {Route, Routes, useNavigate} from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
-import {getContent} from "../utils/auth";
+import {checkToken} from "../utils/auth";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -43,7 +43,7 @@ function App() {
   function tokenCheck () {
     const token = localStorage.getItem('token');
     if (token){
-      getContent(token).then((res) => {
+      checkToken(token).then((res) => {
           const userData = {
             email: res.data.email
           };

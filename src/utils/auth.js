@@ -19,10 +19,12 @@ export const login = (password, email) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({password, email})
+    }).then((res) => {
+        return handleError(res);
     })
 }
 
-export const getContent = (token) => {
+export const checkToken = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
@@ -30,7 +32,9 @@ export const getContent = (token) => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
         }
-    }).then(res => res.json())
+    }).then((res) => {
+        return handleError(res);
+    })
 }
 
 function handleError(res) {

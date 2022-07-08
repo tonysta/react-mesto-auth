@@ -7,7 +7,7 @@ function Login ({handleLogin}) {
 
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
-    let navigate = useNavigate();
+    const navigate = useNavigate();
 
     function handleEmailChange(e) {
         setEmail(e.target.value);
@@ -20,7 +20,6 @@ function Login ({handleLogin}) {
     function handleSubmit(event) {
         event.preventDefault();
         login(password, email)
-            .then(res => res.json())
             .then((data) => {
                 if(data.token) {
                     localStorage.setItem('token', data.token);
