@@ -7,6 +7,8 @@ export const register = (password, email) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({password, email})
+    }).then((res) => {
+        return handleError(res);
     })
 };
 
@@ -28,6 +30,12 @@ export const getContent = (token) => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
         }
-    })
-        .then(res => res.json())
+    }).then(res => res.json())
+}
+
+function handleError(res) {
+    if (res.ok) {
+        return res.json();
+    }
+    return Promise.reject(res.status);
 }

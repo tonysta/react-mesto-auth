@@ -23,16 +23,16 @@ function Register ({isOpen, onClose, open}) {
             password,
             email
         ).then((res) => {
-            if (res.ok) {
                 setSuccess(true);
-            } else {
-                setSuccess(false);
-            }
-            open();
-            setEmail('');
-            setPassword('');
-
-        }).catch((err) =>{console.log(err)});
+        }).catch((err) =>{
+            setSuccess(false);
+            console.log(err)
+        })
+            .finally((res) =>{
+                open();
+                setEmail('');
+                setPassword('');
+            });
     }
 
     return (
