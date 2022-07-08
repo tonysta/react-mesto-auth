@@ -29,6 +29,8 @@ function Register ({isOpen, onClose, open}) {
                 setSuccess(false);
             }
             open();
+            setEmail('');
+            setPassword('');
 
         }).catch((err) =>{console.log(err)});
     }

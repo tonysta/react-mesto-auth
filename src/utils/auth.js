@@ -9,3 +9,13 @@ export const register = (password, email) => {
         body: JSON.stringify({password, email})
     })
 };
+
+export const login = (password, email) => {
+    return fetch(`${BASE_URL}/signin`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({password, email})
+    })
+}

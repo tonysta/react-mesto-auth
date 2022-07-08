@@ -1,10 +1,7 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import {useState} from "react";
 
-const ProtectedRoute = ({children}) => {
-
-    const [loggedIn, setLoggedIn] = useState(false);
+const ProtectedRoute = ({loggedIn, children}) => {
 
             if (!loggedIn) {
                 return <Navigate to="/sign-in"/>

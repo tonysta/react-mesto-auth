@@ -1,9 +1,45 @@
 import React from "react";
+import {login} from "../utils/auth";
+import {useNavigate} from "react-router-dom";
 
-function Login () {
+
+function Login ({handleLogin}) {
+
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    let navigate = useNavigate();
+
+    function handleEmailChange(e) {
+        setEmail(e.target.value);
+    }
+
+    function handlePasswordChange(e) {
+        setPassword(e.target.value);
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        login(password, email)
+            .then(res => res.json())
+            .then((data) => {
+                if(data.token) {
+                    debugger
+                    localStorage.setItem('token', data.token);
+                    setEmail('');
+                    setPassword('');
+                    handleLogin();
+                    navigate("/");
+                } else {
+                    console.log(data.message);
+                }
+
+            }).catch((err) => console.log(err));
+
+    }
+
     return (
         <div className="auth">
-            <form className="auth__form" name="login">
+            <form className="auth__form" name="login" onSubmit={handleSubmit}>
                 <h1 className="auth__title">Вход</h1>
                 <input
                 type="email"
@@ -11,6 +47,8 @@ function Login () {
                 required
                 name="email"
                 className="auth__input"
+                onChange={handleEmailChange}
+                value={email}
                 />
                 <input
                 type="text"
@@ -20,6 +58,8 @@ function Login () {
                 minLength="8"
                 maxLength="20"
                 className="auth__input"
+                onChange={handlePasswordChange}
+                value={password}
                 />
                 <button className="auth__submit" type="submit">Войти</button>
             </form>

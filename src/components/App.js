@@ -24,12 +24,18 @@ function App() {
   const [selectedCard, setSelectedCard] = useState(null);
   const [cards, setCards] = useState([]);
 
+  const [loggedIn, setLoggedIn] = useState(false);
+
 
   useEffect(function() {
     api.getProfileInfo().then((userInfo) => {
       setCurrentUser(userInfo);
     }).catch((err) =>{console.log(err)});
   },[]);
+
+  function handleLogin() {
+    setLoggedIn(true)
+  }
 
   function handleCardClick(card) {
     setSelectedCard(card);
@@ -107,7 +113,7 @@ function App() {
             <Header />
             <Routes>
               <Route path="/" element={
-                  <ProtectedRoute>
+                  <ProtectedRoute loggedIn={loggedIn}>
                     <Main onEditProfile={handleEditProfileClick}
                           onAddPlace={handleAddPlaceClick}
                           onEditAvatar={handleEditAvatarClick}
@@ -119,7 +125,7 @@ function App() {
               }/>
 
               <Route path="sign-up" element={<Register isOpen={infoTooltipOpen} onClose={closeAllPopups} open={openInfoTooltip}/>} />
-              <Route path="sign-in" element={<Login />}/>
+              <Route path="sign-in" element={<Login handleLogin={handleLogin}/>}/>
 
             </Routes>
 
