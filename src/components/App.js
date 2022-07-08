@@ -10,10 +10,11 @@ import {api} from "../utils/api";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
+import {getContent} from "../utils/auth";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -25,6 +26,7 @@ function App() {
   const [cards, setCards] = useState([]);
 
   const [loggedIn, setLoggedIn] = useState(false);
+  let navigate = useNavigate();
 
 
   useEffect(function() {
@@ -32,6 +34,20 @@ function App() {
       setCurrentUser(userInfo);
     }).catch((err) =>{console.log(err)});
   },[]);
+
+  useEffect(function() {
+    tokenCheck();
+  },[]);
+
+  function tokenCheck () {
+    const token = localStorage.getItem('token');
+    if (token){
+      getContent(token).then((res) => {
+          setLoggedIn(true);
+          navigate("/");
+        })
+      }
+    }
 
   function handleLogin() {
     setLoggedIn(true)
