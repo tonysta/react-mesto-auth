@@ -3,7 +3,7 @@ import {login} from "../utils/auth";
 import {useNavigate} from "react-router-dom";
 
 
-function Login ({handleLogin}) {
+function Login ({handleLogin, setData}) {
 
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -23,10 +23,11 @@ function Login ({handleLogin}) {
             .then((data) => {
                 if(data.token) {
                     localStorage.setItem('token', data.token);
-                    setEmail('');
-                    setPassword('');
+                    setData({email})
                     handleLogin();
                     navigate("/");
+                    setEmail('');
+                    setPassword('');
                 } else {
                     console.log(data.message);
                 }

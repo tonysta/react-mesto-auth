@@ -72,6 +72,9 @@ function App() {
   function handleAddPlaceClick() {
     setIsAddPlaceOpen(true);
   }
+  function handleUserData(data) {
+    setUserData(data);
+  }
 
   function closeAllPopups() {
     setIsEditAvatarOpen(false);
@@ -128,7 +131,7 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <div className="background">
           <div className="page">
-            <Header userData={userData} />
+            <Header userData={userData}/>
             <Routes>
               <Route path="/" element={
                   <ProtectedRoute loggedIn={loggedIn}>
@@ -143,7 +146,7 @@ function App() {
               }/>
 
               <Route path="sign-up" element={<Register isOpen={infoTooltipOpen} onClose={closeAllPopups} open={openInfoTooltip}/>} />
-              <Route path="sign-in" element={<Login handleLogin={handleLogin}/>}/>
+              <Route path="sign-in" element={<Login handleLogin={handleLogin} setData={handleUserData}/>}/>
 
             </Routes>
 
