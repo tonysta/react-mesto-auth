@@ -23,7 +23,7 @@ function Login ({handleLogin, setData}) {
             .then((data) => {
                 if(data.token) {
                     localStorage.setItem('token', data.token);
-                    setData({email})
+                    setData({email});
                     handleLogin();
                     navigate("/");
                     setEmail('');
